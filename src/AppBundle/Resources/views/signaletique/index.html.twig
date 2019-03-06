@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Signaletiques list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Name</th>
+                <th>Born</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for signaletique in signaletiques %}
+            <tr>
+                <td><a href="{{ path('signaletique_show', { 'id': signaletique.id }) }}">{{ signaletique.id }}</a></td>
+                <td>{{ signaletique.firstname }}</td>
+                <td>{{ signaletique.name }}</td>
+                <td>{% if signaletique.born %}{{ signaletique.born|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('signaletique_show', { 'id': signaletique.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('signaletique_edit', { 'id': signaletique.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('signaletique_new') }}">Create a new signaletique</a>
+        </li>
+    </ul>
+{% endblock %}
